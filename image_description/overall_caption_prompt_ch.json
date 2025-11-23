@@ -1,0 +1,54 @@
+{
+  "overall_caption": "生成一段详尽的描述性文字（Upsampled Caption），不仅概括核心内容，还需包含背景细节、物体间的空间关系以及画面的整体美学风格。",
+  "scene": {
+    "type": "场景分类：如 赛博朋克街道/极简家居/电商海报/古风山水/文档扫描件/IDE界面 等。",
+    "world_knowledge": "基于常识的推断：如 具体的地理文化背景（如'日本涩谷街头'而非单纯'街道'）、历史时期（如'80年代复古'）、物理状态（如'失重状态'）。",
+    "environment_structure": "环境布局：描述地面、墙壁、天空的材质与透视关系，以及背景中被虚化或易被忽略的元素（如远处的山脉、角落的杂物）。",
+    "time_and_weather": "光影与气象：具体的时间点（如'黄昏蓝调时刻'）、天气细节（如'雨后积水反射'、'雾气弥漫'）。"
+  },
+  "camera": {
+    "perspective": "专业摄影术语：如 鱼眼镜头/长焦压缩感/微距/上帝视角/荷兰角（倾斜构图）。",
+    "composition_layout": "构图形式：如 三分法/对称构图/引导线/留白/框架构图/密集排列。特别注意主体在画面中的精确坐标方位。",
+    "lighting_design": "布光分析：如 伦勃朗光/侧逆光/赛博霓虹光/柔光箱效果/强硬直射光。描述光影的对比度（高调/低调）。",
+    "color_palette": "色彩分析：主色调（Hex或描述）、辅助色、色彩心理（如'忧郁的冷蓝'）、饱和度与色温偏差。"
+  },
+  "atmosphere_and_mood": {
+    "emotional_tone": "情感基调：如 宁静致远/紧张压抑/欢快活泼/孤独冷清/神秘莫测/怀旧。",
+    "sensory_implication": "感官联想：画面暗示的温度（冷冽/燥热）、声音（嘈杂/静谧）、气味（如'充满烟火气'）或触感。",
+    "artistic_vibe": "艺术氛围：如 电影感（Cinematic）、梦幻感（Dreamy）、超现实主义（Surreal）、极简主义（Minimalist）、史诗感（Epic）。",
+    "narrative_tension": "叙事张力：画面是否定格了某个戏剧性瞬间？是否存在冲突或悬念？"
+  },
+  "main_subjects": [
+    {
+      "category": "主体类别：精确分类（如'穿着战术装备的特种兵'而非'人'）。",
+      "count": "数量：精确计数，若密集不可数则描述密度。",
+      "physical_attributes": "物理属性：精确的大小比例、形状结构、材质物理特性（如'半透明的磨砂玻璃'、'反光的金属表面'）。",
+      "appearance_details": "外观细节：Seedream级细节，如 人物的皮肤质感（雀斑/皱纹/毛孔）、衣物的织物纹理、机械的磨损痕迹。",
+      "pose_and_action": "动态描述：姿态的张力、运动模糊（Motion Blur）暗示的动作方向。",
+      "spatial_relationship": "空间关系：相对于其他物体的位置（如'在桌子下方阴影处'、'遮挡了背景的窗户'）。"
+    }
+  ],
+  "visual_text": {
+    "has_text": "true/false",
+    "analysis": {
+      "content": "OCR识别内容，包括密集文本（Dense Text）。",
+      "typography": "排版设计：字体风格（衬线/手写/书法/像素）、字重、字间距、行距、对齐方式。",
+      "rendering_quality": "渲染质量：文字与载体的融合度（如'刻在石头上的凹痕'、'霓虹灯管的辉光'、'纸张上的墨迹晕染'）。",
+      "layout_role": "文字在画面中的作用：主标题/装饰性背景/信息图表/UI按钮/水印。"
+    }
+  },
+  "fine_details": {
+    "imperfections": "真实感瑕疵：如 镜头光斑（Lens Flare）、噪点（Grain）、划痕、灰尘、生锈、色散（Chromatic Aberration）。",
+    "material_physics": "材质交互：光线在物体表面的反射（漫反射/镜面反射）、折射（如水珠）、次表面散射（如皮肤/玉石的通透感）。",
+    "small_elements": "微小元素：纽扣、缝线、背景中的路人、远处的飞鸟、桌面的水渍。"
+  },
+  "style_and_medium": {
+    "medium": "创作媒介：如 3D渲染（Octane Render/Unreal Engine）、胶片摄影（Kodak Portra）、油画（厚涂）、矢量插画、UI设计稿。",
+    "aesthetic_score": "美学评估：构图平衡性、色彩和谐度、清晰度、整体视觉冲击力。",
+    "design_elements": "设计元素：如果是平面设计，描述其风格流派（如 包豪斯/孟菲斯/酸性设计）。"
+  },
+  "safety_and_constraints": {
+    "sensitive_check": "检查暴力、血腥、NSFW、版权IP、个人隐私信息。",
+    "hallucination_risk": "指出画面中可能存在的逻辑错误或模糊不清导致易误解的区域（如'手指数量异常'、'文字拼写错误'）。"
+  }
+}
