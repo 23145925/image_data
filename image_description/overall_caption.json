@@ -1,0 +1,54 @@
+{
+  "overall_caption": "Generate a comprehensive descriptive text (Upsampled Caption) that not only summarizes the core content but also includes background details, spatial relationships between objects, and the overall aesthetic style of the image.",
+  "scene": {
+    "type": "Scene Classification: e.g., Cyberpunk Street / Minimalist Home / E-commerce Poster / Ancient Landscape / Document Scan / IDE Interface, etc.",
+    "world_knowledge": "Common Sense Inference: e.g., Specific geographical/cultural background (e.g., 'Shibuya Crossing, Japan' instead of just 'street'), historical period (e.g., '80s Retro'), physical state (e.g., 'Zero Gravity').",
+    "environment_structure": "Environmental Layout: Describe materials and perspective relationships of the ground, walls, and sky, as well as blurred or easily overlooked elements in the background (e.g., distant mountains, clutter in corners).",
+    "time_and_weather": "Lighting & Weather: Specific time of day (e.g., 'Blue Hour'), weather details (e.g., 'reflections in rain puddles', 'dense fog')."
+  },
+  "camera": {
+    "perspective": "Professional Photography Terms: e.g., Fisheye Lens / Telephoto Compression / Macro / God's Eye View / Dutch Angle (tilted composition).",
+    "composition_layout": "Composition Forms: e.g., Rule of Thirds / Symmetrical / Leading Lines / Negative Space / Frame within a Frame / Dense Pattern. Pay special attention to the precise coordinate positioning of the subject.",
+    "lighting_design": "Lighting Analysis: e.g., Rembrandt Lighting / Rim Light / Cyberpunk Neon / Softbox Effect / Harsh Direct Light. Describe contrast (High Key / Low Key).",
+    "color_palette": "Color Analysis: Dominant color (Hex or description), secondary colors, color psychology (e.g., 'Melancholy Cool Blue'), saturation, and color temperature bias."
+  },
+  "atmosphere_and_mood": {
+    "emotional_tone": "Emotional Tone: e.g., Serene / Tense / Cheerful / Lonely / Mysterious / Nostalgic.",
+    "sensory_implication": "Sensory Associations: Implied temperature (freezing/scorching), sound (noisy/quiet), smell (e.g., 'smoky atmosphere'), or tactile sensations.",
+    "artistic_vibe": "Artistic Vibe: e.g., Cinematic, Dreamy, Surreal, Minimalist, Epic.",
+    "narrative_tension": "Narrative Tension: Does the image freeze a dramatic moment? Is there conflict or suspense?"
+  },
+  "main_subjects": [
+    {
+      "category": "Subject Category: Precise classification (e.g., 'Special Forces soldier in tactical gear' instead of just 'person').",
+      "count": "Count: Precise count; if dense and uncountable, describe density.",
+      "physical_attributes": "Physical Attributes: Precise size proportions, shape structure, material physical properties (e.g., 'translucent frosted glass', 'reflective metal surface').",
+      "appearance_details": "Appearance Details: Ultra-high fidelity details, such as skin texture (freckles/wrinkles/pores), fabric texture, mechanical wear and tear.",
+      "pose_and_action": "Pose & Action: Tension of the pose, direction of movement implied by Motion Blur.",
+      "spatial_relationship": "Spatial Relationship: Position relative to other objects (e.g., 'in the shadow under the table', 'blocking the window in the background')."
+    }
+  ],
+  "visual_text": {
+    "has_text": "true/false",
+    "analysis": {
+      "content": "OCR Content, including Dense Text.",
+      "typography": "Typography Design: Font style (Serif/Handwritten/Calligraphy/Pixel), font weight, kerning, line height, alignment.",
+      "rendering_quality": "Rendering Quality: Integration of text with the medium (e.g., 'carved indentations on stone', 'glow of neon tubes', 'ink bleeding on paper').",
+      "layout_role": "Role in Layout: Main Headline / Decorative Background / Infographic / UI Button / Watermark."
+    }
+  },
+  "fine_details": {
+    "imperfections": "Realistic Imperfections: e.g., Lens Flare, Grain, Scratches, Dust, Rust, Chromatic Aberration.",
+    "material_physics": "Material Physics: Light reflection on surfaces (Diffuse/Specular), Refraction (e.g., water droplets), Subsurface Scattering (e.g., translucency of skin/jade).",
+    "small_elements": "Tiny Elements: Buttons, stitching, pedestrians in the background, distant birds, water stains on a desk."
+  },
+  "style_and_medium": {
+    "medium": "Creative Medium: e.g., 3D Render (Octane Render/Unreal Engine), Film Photography (Kodak Portra), Oil Painting (Impasto), Vector Illustration, UI Design Draft.",
+    "aesthetic_score": "Aesthetic Assessment: Compositional balance, color harmony, clarity, overall visual impact.",
+    "design_elements": "Design Elements: If graphic design, describe the style genre (e.g., Bauhaus / Memphis / Acid Graphics)."
+  },
+  "safety_and_constraints": {
+    "sensitive_check": "Check for violence, gore, NSFW content, copyrighted IP, and private personal information.",
+    "hallucination_risk": "Point out areas with potential logical errors or ambiguity leading to misinterpretation (e.g., 'abnormal number of fingers', 'text spelling errors')."
+  }
+}
