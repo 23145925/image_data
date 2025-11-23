@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>批量水印标注工具 - 自动重命名版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+            color: #333;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #4ade80, #22c55e);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+        }
+        
+        .header {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .batch-info {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .stat-value.watermark { color: #ef4444; }
+        .stat-value.clean { color: #22c55e; }
+        .stat-value.pending { color: #f59e0b; }
+        
+        .main-content {
+            flex: 1;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+        
+        .image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            min-height: 0;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .image-name {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .controls {
+            margin-top: 25px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 18px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .btn:active { transform: translateY(0); }
+        
+        .btn-watermark {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+        
+        .btn-clean {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+        }
+        
+        .btn-back {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            color: white;
+            flex: 0 0 auto;
+            padding: 18px 25px;
+        }
+        
+        .keyboard-hint {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+        
+        .keyboard-hint kbd {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin: 0 2px;
+            font-family: monospace;
+        }
+        
+        .upload-area {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        #folderInput {
+            display: none;
+        }
+        
+        .completion-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .completion-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+        }
+        
+        .completion-card h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #22c55e;
+        }
+        
+        .completion-stats {
+            margin: 30px 0;
+            font-size: 18px;
+            line-height: 2;
+        }
+        
+        .batch-complete-msg {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .rename-log {
+            position: absolute;
+            top: 60px;
+            left: 15px;
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            animation: fadeInOut 2s ease-in-out;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="header">
+            <div class="batch-info" id="batchInfo">等待选择文件夹...</div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-label">当前批次</div>
+                    <div class="stat-value" id="batchCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">有水印</div>
+                    <div class="stat-value watermark" id="watermarkCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">无水印</div>
+                    <div class="stat-value clean" id="cleanCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">待标注</div>
+                    <div class="stat-value pending" id="pendingCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">当前</div>
+                    <div class="stat-value" id="currentIndex">0/0</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="image-container" id="imageContainer">
+                <div class="upload-area">
+                    <div style="font-size: 48px; margin-bottom: 20px;">📁</div>
+                    <h3>选择图片文件夹</h3>
+                    <p style="margin-top: 10px; color: #999;">
+                        支持批量处理，每批100张<br>
+                        标注后自动重命名（文件名_1.jpg = 有水印，文件名_0.jpg = 无水印）
+                    </p>
+                    <button class="upload-btn" onclick="document.getElementById('folderInput').click()">
+                        选择文件夹
+                    </button>
+                    <input type="file" id="folderInput" webkitdirectory directory multiple>
+                </div>
+                <div class="keyboard-hint" style="display:none;">
+                    快捷键: <kbd>1</kbd> 有水印 | <kbd>0</kbd> 无水印 | <kbd>←</kbd> 上一张 | <kbd>→</kbd> 下一张
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-back" id="btnBack">
+                    ⬅️ 上一张 (←)
+                </button>
+                <div class="btn-group">
+                    <button class="btn btn-watermark" id="btnWatermark">
+                        🔴 有水印 (1)
+                    </button>
+                    <button class="btn btn-clean" id="btnClean">
+                        ✅ 无水印 (0)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="completion-overlay" id="completionOverlay">
+        <div class="completion-card">
+            <h2>🎉 本批次完成！</h2>
+            <div class="completion-stats" id="completionStats"></div>
+            <div class="batch-complete-msg">
+                所有图片已自动重命名！<br>
+                请检查文件夹确认后继续下一批
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const BATCH_SIZE = 100;
+        let allFiles = [];
+        let currentBatch = [];
+        let currentBatchIndex = 0;
+        let currentIndex = 0;
+        let batchLabels = {};
+        let totalBatches = 0;
+        
+        function init() {
+            document.getElementById('folderInput').addEventListener('change', handleFolderSelect);
+        }
+        
+        function handleFolderSelect(e) {
+            const files = Array.from(e.target.files);
+            
+            allFiles = files
+                .filter(f => /\.(jpg|jpeg|png|webp|gif)$/i.test(f.name))
+                .filter(f => !/_[01]\./.test(f.name)) // 过滤已标注的
+                .sort((a, b) => {
+                    const numA = parseInt(a.name.match(/(\d+)_/)?.[1] || 0);
+                    const numB = parseInt(b.name.match(/(\d+)_/)?.[1] || 0);
+                    return numA - numB;
+                });
+            
+            if (allFiles.length === 0) {
+                alert('未找到待标注的图片！');
+                return;
+            }
+            
+            totalBatches = Math.ceil(allFiles.length / BATCH_SIZE);
+            
+            console.log(`总共 ${allFiles.length} 张图片，分为 ${totalBatches} 批`);
+            
+            loadBatch(0);
+        }
+        
+        function loadBatch(batchIndex) {
+            currentBatchIndex = batchIndex;
+            const start = batchIndex * BATCH_SIZE;
+            const end = Math.min(start + BATCH_SIZE, allFiles.length);
+            
+            const batchFiles = allFiles.slice(start, end);
+            
+            currentBatch = batchFiles.map(file => ({
+                name: file.name,
+                file: file,
+                url: URL.createObjectURL(file),
+                path: file.webkitRelativePath || file.name
+            }));
+            
+            batchLabels = {};
+            currentIndex = 0;
+            
+            document.getElementById('batchInfo').textContent = 
+                `批次 ${batchIndex + 1}/${totalBatches} | 图片范围: ${start + 1} - ${end} / ${allFiles.length}`;
+            
+            document.querySelector('.keyboard-hint').style.display = 'block';
+            
+            showImage();
+            updateStats();
+        }
+        
+        function showImage() {
+            if (currentBatch.length === 0) return;
+            
+            const img = currentBatch[currentIndex];
+            const container = document.getElementById('imageContainer');
+            
+            const currentLabel = batchLabels[img.name];
+            let labelHint = '';
+            if (currentLabel === 1) labelHint = ' ✅ [已标注: 有水印]';
+            else if (currentLabel === 0) labelHint = ' ✅ [已标注: 无水印]';
+            
+            container.innerHTML = `
+                <img src="${img.url}" alt="${img.name}">
+                <div class="image-name">${img.name}${labelHint}</div>
+                <div class="keyboard-hint">
+                    快捷键: <kbd>1</kbd> 有水印 | <kbd>0</kbd> 无水印 | <kbd>←</kbd> 上一张 | <kbd>→</kbd> 下一张
+                </div>
+            `;
+        }
+        
+        function updateStats() {
+            const total = currentBatch.length;
+            const watermark = Object.values(batchLabels).filter(v => v === 1).length;
+            const clean = Object.values(batchLabels).filter(v => v === 0).length;
+            const labeled = Object.keys(batchLabels).length;
+            const pending = total - labeled;
+            const progress = total > 0 ? (labeled / total * 100) : 0;
+            
+            document.getElementById('batchCount').textContent = total;
+            document.getElementById('watermarkCount').textContent = watermark;
+            document.getElementById('cleanCount').textContent = clean;
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('currentIndex').textContent = `${currentIndex + 1}/${total}`;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            
+            if (labeled === total && total > 0) {
+                processBatch();
+            }
+        }
+        
+        async function processBatch() {
+            console.log('批次完成，开始重命名...');
+            
+            const watermark = Object.values(batchLabels).filter(v => v === 1).length;
+            const clean = Object.values(batchLabels).filter(v => v === 0).length;
+            
+            document.getElementById('completionStats').innerHTML = `
+                本批次共: <strong>${currentBatch.length}</strong> 张<br>
+                有水印: <strong>${watermark}</strong> 张<br>
+                无水印: <strong>${clean}</strong> 张<br><br>
+                <div style="color: #666; font-size: 14px;">
+                    文件已自动重命名规则：<br>
+                    原文件名_1 = 有水印<br>
+                    原文件名_0 = 无水印
+                </div>
+            `;
+            
+            document.getElementById('completionOverlay').style.display = 'flex';
+            
+            // 生成重命名脚本
+            generateRenameScript();
+        }
+        
+        function generateRenameScript() {
+            let script = '@echo off\nchcp 65001\necho 开始批量重命名...\necho.\n\n';
+            
+            for (const [filename, label] of Object.entries(batchLabels)) {
+                const baseName = filename.replace(/\.[^.]+$/, ''); // 去掉扩展名
+                const ext = filename.match(/\.[^.]+$/)?.[0] || '.jpg';
+                const newName = `${baseName}_${label}${ext}`;
+                
+                script += `ren "${filename}" "${newName}"\n`;
+                script += `echo 已重命名: ${filename} -> ${newName}\n`;
+            }
+            
+            script += '\necho.\necho 重命名完成！\npause';
+            
+            const blob = new Blob([script], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `rename_batch_${currentBatchIndex + 1}.bat`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            console.log('重命名脚本已生成！');
+        }
+        
+        function labelImage(label) {
+            if (currentBatch.length === 0) return;
+            
+            const img = currentBatch[currentIndex];
+            batchLabels[img.name] = label;
+            
+            // 显示重命名提示
+            showRenameHint(img.name, label);
+            
+            nextUnlabeled();
+            updateStats();
+        }
+        
+        function showRenameHint(filename, label) {
+            const baseName = filename.replace(/\.[^.]+$/, '');
+            const ext = filename.match(/\.[^.]+$/)?.[0] || '.jpg';
+            const newName = `${baseName}_${label}${ext}`;
+            const labelText = label === 1 ? '有水印' : '无水印';
+            
+            const hint = document.createElement('div');
+            hint.className = 'rename-log';
+            hint.textContent = `✓ 将重命名为: ${newName} (${labelText})`;
+            document.getElementById('imageContainer').appendChild(hint);
+            
+            setTimeout(() => hint.remove(), 2000);
+        }
+        
+        function nextUnlabeled() {
+            let found = false;
+            for (let i = currentIndex + 1; i < currentBatch.length; i++) {
+                if (!(currentBatch[i].name in batchLabels)) {
+                    currentIndex = i;
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (!found) {
+                for (let i = 0; i < currentIndex; i++) {
+                    if (!(currentBatch[i].name in batchLabels)) {
+                        currentIndex = i;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            
+            if (found) {
+                showImage();
+            }
+        }
+        
+        function prevImage() {
+            if (currentBatch.length === 0) return;
+            currentIndex = (currentIndex - 1 + currentBatch.length) % currentBatch.length;
+            showImage();
+        }
+        
+        function nextImage() {
+            if (currentBatch.length === 0) return;
+            currentIndex = (currentIndex + 1) % currentBatch.length;
+            showImage();
+        }
+        
+        document.getElementById('btnWatermark').addEventListener('click', () => labelImage(1));
+        document.getElementById('btnClean').addEventListener('click', () => labelImage(0));
+        document.getElementById('btnBack').addEventListener('click', prevImage);
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT') return;
+            
+            switch(e.key) {
+                case '1':
+                    labelImage(1);
+                    break;
+                case '0':
+                    labelImage(0);
+                    break;
+                case 'ArrowLeft':
+                    prevImage();
+                    break;
+                case 'ArrowRight':
+                    nextImage();
+                    break;
+            }
+        });
+        
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
