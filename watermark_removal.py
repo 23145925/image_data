@@ -8,8 +8,8 @@ from pathlib import Path
 
 # ---------- 配置区域 -------------
 # 这一块填 API Key
-API_URL = "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
-API_KEY = "95764e6c-0710-4095-ab55-a98301cebbc9"
+API_URL = ""
+API_KEY = ""
 MODEL = "doubao-seed-1-6-251015"
 
 # 要处理的图片路径
