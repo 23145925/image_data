@@ -1,0 +1,72 @@
+{
+  "post_id": "57",
+  "topic_zh": "户外场景中的时尚穿搭",
+  "topic_en": "Outdoor fashion look",
+  "topic_reasoning_zh": "图片展示人物在户外公园及建筑场景中的时尚穿搭，主题为户外时尚展示。",
+  "topic_reasoning_en": "Images show a person's fashion outfits in outdoor park and architectural settings, focusing on outdoor fashion.",
+  "images": [
+    {
+      "image_id": "1",
+      "filename": "57_1.jpg",
+      "is_related": false,
+      "reasoning_zh": "图片展示店铺门口场景，未体现户外时尚穿搭内容",
+      "reasoning_en": "The picture shows a shop entrance with no outdoor fashion look elements"
+    },
+    {
+      "image_id": "2",
+      "filename": "57_2.jpg",
+      "is_related": false,
+      "reasoning_zh": "图片展示建筑夜景，无户外时尚穿搭相关内容",
+      "reasoning_en": "The picture shows architectural night view, no outdoor fashion look related content"
+    },
+    {
+      "image_id": "3",
+      "filename": "57_3.jpg",
+      "is_related": false,
+      "reasoning_zh": "图片仅展示户外绿植背景，无时尚穿搭相关内容",
+      "reasoning_en": "The picture only shows outdoor greenery, no fashion look related content"
+    },
+    {
+      "image_id": "4",
+      "filename": "57_4.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示户外场景中人物的时尚穿搭，直接相关",
+      "reasoning_en": "The picture shows fashion wear of a person in outdoor scene, directly related"
+    },
+    {
+      "image_id": "5",
+      "filename": "57_5.jpg",
+      "is_related": false,
+      "reasoning_zh": "图片仅展示遮阳篷和文字，无户外时尚穿搭内容",
+      "reasoning_en": "The picture only shows an awning and text, no outdoor fashion look content"
+    },
+    {
+      "image_id": "6",
+      "filename": "57_6.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示户外场景中人物的时尚穿搭，符合主题",
+      "reasoning_en": "The picture shows a person's fashion look outdoors, matching the theme"
+    },
+    {
+      "image_id": "7",
+      "filename": "57_7.jpg",
+      "is_related": false,
+      "reasoning_zh": "仅展示背影外套，未体现时尚穿搭细节，与主题弱相关",
+      "reasoning_en": "Only shows back of a jacket, lacks fashion details, weakly related to theme"
+    },
+    {
+      "image_id": "8",
+      "filename": "57_8.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示户外场景中人物的时尚穿搭，直接相关",
+      "reasoning_en": "The picture shows a person's fashion outfit in outdoor scene, directly related"
+    },
+    {
+      "image_id": "9",
+      "filename": "57_9.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示户外场景中人物的时尚穿搭",
+      "reasoning_en": "The picture shows fashion outfit of a person in outdoor scene"
+    }
+  ]
+}

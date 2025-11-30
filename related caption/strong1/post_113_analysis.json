@@ -1,0 +1,51 @@
+{
+  "post_id": "113",
+  "topic_zh": "大蒜的摄影展示",
+  "topic_en": "Garlic photography showcase",
+  "topic_reasoning_zh": "六张图片均展示不同摆放的大蒜，且标有'Garlic'，主题为大蒜摄影。",
+  "topic_reasoning_en": "All six images show garlic in various arrangements with 'Garlic' labeled, so the topic is garlic photography.",
+  "images": [
+    {
+      "image_id": "1",
+      "filename": "113_1.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片直接展示堆叠的大蒜，是大蒜摄影展示的核心内容",
+      "reasoning_en": "The picture directly shows stacked garlic, a core part of garlic photography showcase"
+    },
+    {
+      "image_id": "2",
+      "filename": "113_2.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片直接展示三个大蒜，是大蒜摄影展示的核心内容",
+      "reasoning_en": "The picture directly shows three garlic bulbs, core of garlic photography showcase"
+    },
+    {
+      "image_id": "3",
+      "filename": "113_3.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片直接展示大蒜，是大蒜摄影展示的核心内容",
+      "reasoning_en": "The picture directly shows garlic, core of garlic photography showcase"
+    },
+    {
+      "image_id": "4",
+      "filename": "113_4.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片直接展示大蒜及蒜瓣，是大蒜摄影展示的核心内容",
+      "reasoning_en": "Image directly shows garlic bulbs and cloves, core of garlic photography showcase"
+    },
+    {
+      "image_id": "5",
+      "filename": "113_5.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片直接展示三个大蒜头，是大蒜摄影展示的核心内容",
+      "reasoning_en": "The picture directly shows three garlic bulbs, core of garlic photography showcase"
+    },
+    {
+      "image_id": "6",
+      "filename": "113_6.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片直接展示大蒜，是大蒜摄影展示的核心内容",
+      "reasoning_en": "The picture directly shows garlic, core of garlic photography showcase"
+    }
+  ]
+}

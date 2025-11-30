@@ -1,0 +1,37 @@
+{
+  "post_id": "188",
+  "topic_zh": "多样的自然美景展示",
+  "topic_en": "Diverse natural scenery display",
+  "topic_reasoning_zh": "四张图片包含海岸（海鸥、海浪、日落）与河流景观，主题为展示多样自然美景。",
+  "topic_reasoning_en": "The four images include coastal (seagulls, waves, sunset) and river scenes, displaying diverse natural beauties.",
+  "images": [
+    {
+      "image_id": "1",
+      "filename": "188_1.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示海滩海浪海鸥等自然美景，符合主题",
+      "reasoning_en": "Picture shows beach, waves, seagulls—natural scenery relevant to theme"
+    },
+    {
+      "image_id": "2",
+      "filename": "188_2.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示河流、山体等多样自然美景，直接相关主题",
+      "reasoning_en": "Image shows diverse natural scenery like river and mountain, directly related"
+    },
+    {
+      "image_id": "3",
+      "filename": "188_3.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示海滩海浪飞鸟等自然美景，与主题强相关",
+      "reasoning_en": "Image shows beach, waves, birds—direct natural scenery display, strongly related"
+    },
+    {
+      "image_id": "4",
+      "filename": "188_4.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示海边日落美景，属于自然美景范畴",
+      "reasoning_en": "The picture shows seaside sunset scenery, a type of natural beauty"
+    }
+  ]
+}

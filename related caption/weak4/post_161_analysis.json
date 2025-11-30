@@ -1,0 +1,37 @@
+{
+  "post_id": "161",
+  "topic_zh": "四季的自然美景",
+  "topic_en": "Four seasons' natural beauty",
+  "topic_reasoning_zh": "四张图片展现四季场景（夏滩、秋叶、冬雪等），主题为四季的自然美景。",
+  "topic_reasoning_en": "Each image shows a season's scene (beach, leaves, snow), theme is four seasons' beauty.",
+  "images": [
+    {
+      "image_id": "1",
+      "filename": "161_1.jpg",
+      "is_related": false,
+      "reasoning_zh": "图片未体现四季特征，仅展示普通自然光影",
+      "reasoning_en": "The picture lacks seasonal features, only showing ordinary natural light and shadow"
+    },
+    {
+      "image_id": "2",
+      "filename": "161_2.jpg",
+      "is_related": false,
+      "reasoning_zh": "图片展示海滩风光，无明确四季自然特征",
+      "reasoning_en": "The picture shows beach scenery without clear seasonal natural features"
+    },
+    {
+      "image_id": "3",
+      "filename": "161_3.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示秋日枫叶，属四季自然美景的一部分",
+      "reasoning_en": "Image shows autumn maple leaves, part of four seasons' natural beauty"
+    },
+    {
+      "image_id": "4",
+      "filename": "161_4.jpg",
+      "is_related": true,
+      "reasoning_zh": "图片展示冬季雪景，是四季自然美景的一部分",
+      "reasoning_en": "Picture shows winter snow scenery, part of four seasons' natural beauty"
+    }
+  ]
+}
